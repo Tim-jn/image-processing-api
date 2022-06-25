@@ -31,10 +31,6 @@ const resizeImage = async (
           height,
         })
         .toFile(`${imagePath}/thumb/${filename}-${width}x${height}.jpg`);
-
-      images.get("/", (req, res) => {
-        res.sendFile(`${imagePath}/thumb/${filename}-${width}x${height}.jpg`);
-      });
     }
   } catch (error) {
     console.log(`An error occurred during processing: ${error}`);
@@ -43,5 +39,13 @@ const resizeImage = async (
 };
 
 images.use("/", resizeImage);
+
+images.get("/", (req, res) => {
+  res.sendFile(
+    `${path.resolve(__dirname, `../../../assets/images/`)}/thumb/${
+      req.query.filename
+    }-${req.query.width}x${req.query.height}.jpg`
+  );
+});
 
 export default images;
