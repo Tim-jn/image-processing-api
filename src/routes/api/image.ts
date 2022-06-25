@@ -2,28 +2,24 @@ import express, { Request, Response, NextFunction } from "express";
 import sharp from "sharp";
 import path from "path";
 const images = express.Router();
+const imagePath = path.resolve(__dirname, `../../../assets/images/`);
 
 const resizeImage = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
+  const width = parseInt(req.query.width as string);
+  const height = parseInt(req.query.height as string);
+
   try {
-    await sharp(
-      path.resolve(
-        __dirname,
-        `../../../assets/images/full/${req.query.filename}.jpg`
-      )
-    )
+    await sharp(`${imagePath}/full/${req.query.filename}.jpg`)
       .resize({
-        width: parseInt(req.query.width as string),
-        height: parseInt(req.query.height as string),
+        width,
+        height,
       })
       .toFile(
-        path.resolve(
-          __dirname,
-          `../../../assets/images/thumb/${req.query.filename}-${req.query.width}x${req.query.height}.jpg`
-        )
+        `${imagePath}/thumb/${req.query.filename}-${req.query.width}x${req.query.height}.jpg`
       );
   } catch (error) {
     console.log(`An error occurred during processing: ${error}`);
@@ -36,10 +32,7 @@ images.use(resizeImage);
 images.get("/", (req, res) => {
   try {
     res.sendFile(
-      path.resolve(
-        __dirname,
-        `../../../assets/images/thumb/${req.query.filename}-${req.query.width}x${req.query.height}.jpg`
-      )
+      `${imagePath}/thumb/${req.query.filename}-${req.query.width}x${req.query.height}.jpg`
     );
   } catch (error) {
     console.log(`An error occurred during processing: ${error}`);
