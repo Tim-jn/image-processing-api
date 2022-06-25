@@ -1,6 +1,8 @@
 import express, { Request, Response, NextFunction } from "express";
 import sharp from "sharp";
 import path from "path";
+import { dataImages } from "../../index";
+
 const images = express.Router();
 
 const resizeImage = async (
@@ -13,13 +15,10 @@ const resizeImage = async (
   const filename = req.query.filename as string;
   const imagePath = path.resolve(__dirname, `../../../assets/images/`);
 
-  const dataImages =
-    "encenadaport, fjord, icelandwaterfall, palmtunnel, santamonica";
-
   try {
     if (filename === undefined || !dataImages.includes(filename)) {
       res.send(
-        `</span>Please enter a valid <b>filename</b>, for example : <a href='images?filename=encenadaport&width=250&height=250'>api/images?filename=encenadaport&width=250&height=250</a></span><br/> <br/>Here is a list of available filenames : ${dataImages}`
+        `</span>Input file is missing : please enter a valid <b>filename</b> !<br/> <br/>For example : <a href='images?filename=encenadaport&width=250&height=250'>api/images?filename=encenadaport&width=250&height=250</a></span><br/> <br/>Here is a list of available filenames : ${dataImages}`
       );
     } else if (isNaN(width && height)) {
       res.send(
@@ -43,6 +42,6 @@ const resizeImage = async (
   next();
 };
 
-images.use(resizeImage);
+images.use("/", resizeImage);
 
 export default images;
