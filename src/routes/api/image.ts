@@ -17,14 +17,17 @@ const resizeImage = async (
 
   try {
     if (filename === undefined || !dataImages.includes(filename)) {
+      res.status(404);
       res.send(
         `</span>Input file is missing : please enter a valid <b>filename</b> !<br/> <br/>For example : <a href='images?filename=encenadaport&width=250&height=250'>api/images?filename=encenadaport&width=250&height=250</a></span><br/> <br/>Here is a list of available filenames : ${dataImages}`
       );
     } else if (isNaN(width && height)) {
+      res.status(404);
       res.send(
         "</span>Please enter a valid number for <b>height</b> and <b>width</b>, for example : <a href='images?filename=encenadaport&width=250&height=250'>api/images?filename=encenadaport&width=250&height=250</a></span>"
       );
     } else if (dataImages.includes(filename) && !isNaN(width && height)) {
+      res.status(200);
       await sharp(`${imagePath}/full/${filename}.jpg`)
         .resize({
           width,
