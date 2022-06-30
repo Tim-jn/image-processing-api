@@ -16,9 +16,9 @@ Here is a list of available filenames : encenadaport, fjord, icelandwaterfall, p
 
 ## Endpoints
 
-- / : Home of the API, with an example and a short description.
-- /api/images : Return an error (Input file is missing : please enter a valid filename !)
-- /api/images?filename=encenadaport : Return an error (Please enter a valid number for height and width)
-- /api/images?filename={FILENAME}&width={WIDTH}&height={HEIGHT} <br/><br/>
---> Example : http://localhost:8000/api/images?filename=encenadaport&width=250&height=250
+- http://localhost:8000/ : Home of the API, with an example and a short description.
+- http://localhost:8000/api/images : Returns an error (Input file is missing : please enter a valid filename !)
+- http://localhost:8000/api/images?filename=encenadaport : Returns an error (Please enter a valid number for height and width)
+- http://localhost:8000/api/images?filename=encenadaport&width=250&height=250 : Returns the encenadaport image resized to 200 x 200.
+
 
