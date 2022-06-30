@@ -20,5 +20,5 @@ Here is a list of available filenames : encenadaport, fjord, icelandwaterfall, p
 - /api/images : Return an error (Input file is missing : please enter a valid filename !)
 - /api/images?filename=encenadaport : Return an error (Please enter a valid number for height and width)
 - /api/images?filename={FILENAME}&width={WIDTH}&height={HEIGHT}
-=> For example : api/images?filename=encenadaport&width=250&height=250
+=> For example : http://localhost:8000/api/images?filename=encenadaport&width=250&height=250
 
