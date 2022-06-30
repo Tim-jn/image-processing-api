@@ -2,7 +2,10 @@
 
 ## Description
 
-First project of Udacity's Full Stack Javascript Developer Nanodegree program
+This API is the first project of Udacity's Full Stack Javascript Developer Nanodegree program.
+It resizes and saves images to user specifications when visiting a URL.
+
+Here is a list of available filenames : encenadaport, fjord, icelandwaterfall, palmtunnel, santamonica
 
 ## Commands
 
