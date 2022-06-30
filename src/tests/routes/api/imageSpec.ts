@@ -1,7 +1,7 @@
 import request from "supertest";
 import { app } from "../../../index";
 
-describe("GET /images/", () => {
+describe("GET /images", () => {
   describe("user enter a valid endpoint", () => {
     it("should respond with a jpeg image", async () => {
       const response = await request(app).get(
