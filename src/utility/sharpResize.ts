@@ -5,7 +5,7 @@ export default async function sharpResize(
   filename: string,
   height: number,
   width: number
-) {
+): Promise<void> {
   try {
     await sharp(
       `${path.resolve(__dirname, `../../assets/images/`)}/full/${filename}.jpg`
